@@ -7,6 +7,9 @@ module.exports = {
       backgroundImage:{
         bannerBG : "url(./images/images/bg.png)"
       },
+      boxShadow: {
+        'cardShadow': '3px 4px 10px 2px rgba(0, 0, 0, 0.05)',
+      },
       colors:{
         bgGray: "#3A4256",
         bgGreenL: "rgba(25, 211, 174, 1)",
