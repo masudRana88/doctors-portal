@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from '../../Component/Banner/Banner';
+import DentalCare from '../../Component/DentalCare/DentalCare';
 import InfoCard from '../../Component/InfoCard/InfoCard';
 import ServiceCard from '../../Component/ServiceCard/ServiceCard';
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
           <Banner/>
           <InfoCard/>
           <ServiceCard/>
+          <DentalCare/>
        </div>
     );
 };
