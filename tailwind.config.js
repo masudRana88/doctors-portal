@@ -4,9 +4,13 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}",'./src/**/*.{html,js}', './node_modules/tw-elements/dist/js/**/*.js'],
   theme: {
     extend: {
+      backgroundSize:{
+        "small" : "192px 100px"
+      },
       backgroundImage:{
         bannerBG : "url(./images/images/bg.png)",
-        appointmentBG : "url(./images/images/appointment.png)"
+        appointmentBG : "url(./images/images/appointment.png)",
+        testimonialBG : "url(./images/icons/quote.svg)"
       },
       boxShadow: {
         'cardShadow': '3px 4px 10px 2px rgba(0, 0, 0, 0.05)',
