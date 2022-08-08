@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage:{
-        bannerBG : "url(./images/images/bg.png)"
+        bannerBG : "url(./images/images/bg.png)",
+        appointmentBG : "url(./images/images/appointment.png)"
       },
       boxShadow: {
         'cardShadow': '3px 4px 10px 2px rgba(0, 0, 0, 0.05)',

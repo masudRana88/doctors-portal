@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '../Button';
 import treatment from "./../../../images/images/treatment.png"
 const DentalCare = () => {
     return (
@@ -7,9 +8,9 @@ const DentalCare = () => {
                 <img src={treatment} alt="" className='w-[322px] h-[4-8px] md:w-[458px] md:h-[576px] rounded-md hover:shadow-2xl transition ease-out delay-150'/>
             </div>
             <div className='flex flex-col items-start justify-center w-full mt-10 md:w-2/4 md:mt-0'>
-                    <h2 className='mb-3 text-4xl font-bold text-textColorH'>Your New Smile Starts Here</h2>
-                    <p className='mb-3'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the</p>
-                    <button className='px-4 py-2.5 rounded-md font-semibold text-white bg-gradient-to-bl from-bgGreenR to-bgGreenL hover:shadow-md transition delay-100'>GET STARTED</button>
+                    <h2 className='mb-3 text-4xl font-bold text-textColorH'>Exceptional Dental Care, on Your Terms</h2>
+                    <p className='mb-3'>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsumis that it has a more-or-less normal distribution of letters,as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page</p>
+                    <Button>GET STARTED</Button>
             </div>
         </section>
     );
