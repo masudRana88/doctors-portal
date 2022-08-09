@@ -1,51 +1,35 @@
 
-import { NavLink, } from 'react-router-dom';
+import { NavLink, useLocation, } from 'react-router-dom';
 import { navManu } from '../../../utils/path/navBar/navManu';
 import { FaBars } from "react-icons/fa";
 import { aboutPage, appointmentPage, loginPage } from '../../../utils/path/path';
 import {  NavHashLink } from 'react-router-hash-link';
 const NavBar = () => {
-
+    const location = useLocation()
+    const isActive =(n:{link:string}, location:{pathname:string; hash:string}) => {
+        const link = n.link;
+        const hash = "/"+location.hash;
+        return (location.pathname === link ) || (link === hash )
+    }
     return (
-        <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-gray-600 md:container md:pt-5 md:pb-5'>
-           <nav className='flex items-center justify-between '>
+        <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-white shadow-lg md:pt-5 md:pb-5'>
+           <nav className='flex items-center justify-between mx-auto md:container'>
                 <div>
                     <samp className='text-lg font-bold'>Doctor Portal</samp>
                 </div>
                 <div>
                     {/* MD display */}
                     <ul className='hidden md:flex'>
-                        <li><NavLink to={"/"} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                Home
-                            </NavLink>
-                        </li>
-                        <li><NavLink to={aboutPage} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                About
-                            </NavLink>
-                        </li>
-                        <li><NavLink to={appointmentPage} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                Appointment
-                            </NavLink>
-                        </li>
-                        <li><NavHashLink  to={"/#reviews"} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                Reviews
-                            </NavHashLink>
-                        </li>
-                        <li><NavHashLink to={"/#contactus"} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                Contact Us
-                            </NavHashLink>
-                        </li>
-                        <li><NavLink to={loginPage} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
-                                Login
-                            </NavLink>
-                        </li>
-                       
+                        
+                        {
+                            navManu.map(n=>(
+                            <li>
+                                <NavHashLink smooth key={n.id} to={n.link} className={`${ isActive(n,location)? "px-2 py-2 mr-4 text-white bg-slate-600 rounded-md ": "px-2 py-2 mr-4 text-black rounded-md "}`}>
+                                   {n.name}
+                                 </NavHashLink>
+                            </li>
+                            ))
+                        }
                     </ul>
 
                     {/* SM Display */}
@@ -57,13 +41,13 @@ const NavBar = () => {
                             dropdown-toggle
                             px-3
                             py-2.5
-                            text-white
+                            text-black
                             font-medium
                             text-xs
                             leading-tight
                             uppercase
                             rounded
-                          active:text-white
+                          active:text-black
                             transition
                             duration-150
                             ease-in-out
@@ -83,8 +67,7 @@ const NavBar = () => {
                             aria-labelledby="dropdownMenuButton1"
                         >
                             {navManu.map(n=>(
-                                <li><NavLink className={({ isActive }) =>
-                                isActive ? "block w-full px-4 py-2 text-sm font-normal text-white dropdown-item whitespace-nowrap bg-bgGray" : " block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent dropdown-item whitespace-nowrap hover:bg-gray-100"} key={n.id} to={n.link}>{n.name}</NavLink></li>
+                                <li><NavHashLink smooth className={`${isActive(n,location) ? "block w-full px-4 py-2 text-sm font-normal text-white  whitespace-nowrap bg-bgGray" : " block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent  whitespace-nowrap hover:bg-gray-100"}`} key={n.id} to={n.link}>{n.name}</NavHashLink></li>
                             ))}
                         </ul>
                         </div>

@@ -15,7 +15,7 @@ const ContactForm = () => {
         reset()
     }
     return (
-        <section className='flex items-center justify-center w-full h-full bg-appointmentBG'>
+        <section id='contactus' className='flex items-center justify-center w-full h-full bg-appointmentBG'>
             <div className='md:w-[550px] w-[440px] my-16 px-4 md:my-32'>
                 <h3 className="mb-2 text-lg font-bold text-center md:text-xl text-bgGreenL">Contact Us</h3>
                 <h4 className="mb-8 text-xl font-semibold text-center text-white md:2xl ">Stay connected with us</h4>

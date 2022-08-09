@@ -2,7 +2,7 @@ import React from 'react';
 import people1 from "./../../../images/images/people1.png"
 const Testimonial = () => {
     return (
-        <section className='w-full px-4 mt-10 mb-16 bg-right-top bg-no-repeat bg-small md:mt-32 md:px-14 bg-testimonialBG'>
+        <section id='reviews' className='w-full px-4 mt-10 mb-16 bg-right-top bg-no-repeat bg-small md:mt-32 md:px-14 bg-testimonialBG'>
             <div>
                 <h3 className="mb-3 text-xl font-bold text-bgGreenL">Testimonial</h3>
                 <h4 className="mb-3 text-2xl font-semibold text-textColorH md:text-4xl">What Our Patients Says</h4>

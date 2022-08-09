@@ -4,44 +4,51 @@ export const navManu : {
     id:number,
     name: string,
     link : string,
-    navLink: boolean    
+    navLink: boolean,
+    isActiv : boolean    
 }[] =[
     {
         id: 1,
         name: "Home",
-        link : homePage,
-        navLink: true
+        link : "/#home",
+        navLink: false,
+        isActiv : false,
     },
     {
         id: 2,
         name: "About",
         link : aboutPage,
-        navLink: true
+        navLink: true,
+        isActiv : false,
     },
 
     {
         id: 3,
         name: "Appointment",
         link : appointmentPage,
-        navLink: true
+        navLink: true,
+        isActiv : false,
     },
 
     {
         id: 4,
         name: "Reviews",
-        link : reviews,
-        navLink: true
+        link : "/#reviews",
+        navLink: false,
+        isActiv : false,
     },
     {
         id: 5,
         name: "Contact Us",
-        link : contactPage,
-        navLink: true
+        link : "/#contactus",
+        navLink: false,
+        isActiv : false,
     },
     {
         id: 6,
         name: "Login",
         link : loginPage,
-        navLink: true
+        navLink: true,
+        isActiv : false,
     },
 ]
