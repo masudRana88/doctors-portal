@@ -1,7 +1,9 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+
+import { NavLink, } from 'react-router-dom';
 import { navManu } from '../../../utils/path/navBar/navManu';
 import { FaBars } from "react-icons/fa";
+import { aboutPage, appointmentPage, loginPage } from '../../../utils/path/path';
+import {  NavHashLink } from 'react-router-hash-link';
 const NavBar = () => {
 
     return (
@@ -13,11 +15,37 @@ const NavBar = () => {
                 <div>
                     {/* MD display */}
                     <ul className='hidden md:flex'>
-                        {   navManu.map(n=>(
-                            <li><NavLink to={n.link} className={({ isActive }) =>
-                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>{n.name}</NavLink></li>
-                        ))
-                        }
+                        <li><NavLink to={"/"} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                Home
+                            </NavLink>
+                        </li>
+                        <li><NavLink to={aboutPage} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                About
+                            </NavLink>
+                        </li>
+                        <li><NavLink to={appointmentPage} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                Appointment
+                            </NavLink>
+                        </li>
+                        <li><NavHashLink  to={"/#reviews"} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                Reviews
+                            </NavHashLink>
+                        </li>
+                        <li><NavHashLink to={"/#contactus"} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                Contact Us
+                            </NavHashLink>
+                        </li>
+                        <li><NavLink to={loginPage} className={({ isActive }) =>
+                            isActive ? "text-white bg-bgGray px-2 py-2 mr-4 rounded-md" : " text-black px-2 py-2 mr-4 rounded-md"}>
+                                Login
+                            </NavLink>
+                        </li>
+                       
                     </ul>
 
                     {/* SM Display */}
