@@ -1,8 +1,7 @@
 
-import { NavLink, useLocation, } from 'react-router-dom';
+import { useLocation, } from 'react-router-dom';
 import { navManu } from '../../../utils/path/navBar/navManu';
 import { FaBars } from "react-icons/fa";
-import { aboutPage, appointmentPage, loginPage } from '../../../utils/path/path';
 import {  NavHashLink } from 'react-router-hash-link';
 const NavBar = () => {
     const location = useLocation()
