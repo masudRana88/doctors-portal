@@ -23,7 +23,7 @@ const Testimonial = () => {
                         </div>
                     </div>
                 </div>
-                {/* cart 1 */}
+                {/* cart 2 */}
                 <div className='px-6 py-6 w-96 rounded-xl shadow-cardShadow'>
                     <p className='mb-4'>It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content</p>
                     <div className='flex gap-3'>
@@ -38,7 +38,7 @@ const Testimonial = () => {
                         </div>
                     </div>
                 </div>
-                {/* cart 1 */}
+                {/* cart 3 */}
                 <div className='px-6 py-6 w-96 rounded-xl shadow-cardShadow'>
                     <p className='mb-4'>It is a long established fact that by the readable content of a lot layout. The point of using Lorem a more-or-less normal distribu to using Content here, content</p>
                     <div className='flex gap-3'>

@@ -3,7 +3,7 @@ import Button from '../Button';
 import chair from "./../../../images/images/chair.png"
 const Banner = () => {
     return (
-        <section id='home' className=' w-full px-4 h-full md:h-[94vh] bg-bannerBG mt-[66px]'>
+        <section id='home' className=' w-full px-4 h-full md:h-[94vh] bg-bannerBG'>
             <div className='items-center justify-center h-full gap-9 md:flex md:container md:mx-auto md:flex-row-reverse'>
         
                 {/* row 1 */}

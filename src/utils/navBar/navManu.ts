@@ -1,5 +1,5 @@
 
-import { aboutPage, appointmentPage, contactPage, homePage, loginPage, reviews } from './../path';
+import { aboutPage, appointmentPage, contactPage, homePage, loginPage, reviews } from '../path/path';
 export const navManu : {
     id:number,
     name: string,
