@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../Redux/store';
 import Button from '../Button';
 import Modal from '../Modal/Modal';
 
@@ -7,6 +9,7 @@ const AvailableSlots = ({slots}:props) => {
     const [name,setName] = useState('')
     const [time,setTime] = useState("")
     const [showModal,setShowModal] = useState(false)
+    const selectedDate = useSelector((staet: RootState)=> staet.date.selectedDate)
     useEffect(()=>{
         setName(slots.name)
     },[slots])
@@ -31,7 +34,7 @@ const AvailableSlots = ({slots}:props) => {
             }
         </div>
         {/* Modal */}
-        <Modal show={showModal} setShow={setShowModal} time={time} />
+        <Modal show={showModal} setShow={setShowModal} time={time} name={name} selectedDate={selectedDate}/>
     </div>
     );
 };
