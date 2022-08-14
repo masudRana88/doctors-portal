@@ -24,8 +24,8 @@ const NavBar = () => {
                         
                         {
                             navManu.map(n=>(
-                            <li>
-                                <NavHashLink smooth  key={n.id} to={n.link} className={`${ isActive(n,location)? "px-2 py-2 mr-4 text-white bg-slate-600 rounded-md ": "px-2 py-2 mr-4 text-black rounded-md "}`}>
+                            <li key={n.id}>
+                                <NavHashLink smooth  to={n.link} className={`${ isActive(n,location)? "px-2 py-2 mr-4 text-white bg-slate-600 rounded-md ": "px-2 py-2 mr-4 text-black rounded-md "}`}>
                                    {n.name}
                                  </NavHashLink>
                             </li>
@@ -68,7 +68,7 @@ const NavBar = () => {
                             aria-labelledby="dropdownMenuButton1"
                         >
                             {navManu.map((n)=>(
-                                <li><NavHashLink smooth className={`${isActive(n,location) ? "block w-full px-4 py-2 text-sm font-normal text-white  whitespace-nowrap bg-bgGray" : " block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent  whitespace-nowrap hover:bg-gray-100"}`} key={n.id} to={n.link}>{n.name}</NavHashLink></li>
+                                <li key={n.id}><NavHashLink smooth className={`${isActive(n,location) ? "block w-full px-4 py-2 text-sm font-normal text-white  whitespace-nowrap bg-bgGray" : " block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent  whitespace-nowrap hover:bg-gray-100"}`} key={n.id} to={n.link}>{n.name}</NavHashLink></li>
                             ))}
                         </ul>
                         </div>

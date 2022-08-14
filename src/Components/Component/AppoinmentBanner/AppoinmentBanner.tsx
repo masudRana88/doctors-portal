@@ -3,12 +3,17 @@ import 'react-day-picker/dist/style.css'
 import chair from "../../../images/images/chair.png"
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
+import { useDispatch } from 'react-redux';
+import { selectedDate } from '../../../Redux/Slice/DateSlice/dateSlice';
 const AppoinmentBanner = () => {
     const [date, setDate] = React.useState<Date>();
-    console.log(date);
+    const dispatch = useDispatch()
+    
     let footer = <p>Please pick a day.</p>;
     if (date) {
-      footer = <p>You picked {format(date, 'PP')}.</p>;
+        let formated = format(date, 'PP')
+        dispatch(selectedDate(formated))
+        footer = <p>You picked {formated}.</p>;
     }
     return (
         <section className='w-full px-4 h-full md:h-[94vh] bg-bannerBG'>

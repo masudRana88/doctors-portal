@@ -23,6 +23,7 @@ module.exports = {
         textColorH: "#3A4256",
         footerH: "#939393",
         footerT: "#3A4256",
+        modalBg: "rgba(0,0,0,0.5)"
       },
     },
   },
