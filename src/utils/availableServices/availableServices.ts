@@ -1,37 +1,80 @@
-import { cosmeticDentistry, teethOrthodontics, teethCleaning, cavityProtection, pediatricDental, oralSurgery } from './../path/path';
+
+
 export const services : {
     id: number,
     name : string,
-    link : string,
+    avalibleSit: {time: string, site:number}[]
 }[]=[
     {
         id: 1,
         name : "Teeth Orthodontics",
-        link: teethOrthodontics
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+        ]
     },
     {
         id: 2,
         name : "Cosmetic Dentistry",
-        link: cosmeticDentistry
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+            
+        ]
     },
     {
         id: 3,
         name : "Teeth Cleaning",
-        link: teethCleaning
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+            
+        ]
     },
     {
         id: 4,
         name : "Cavity Protection",
-        link: cavityProtection
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+            
+        ]
     },
     {
         id: 5,
         name : "Pediatric Dental",
-        link: pediatricDental
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+            
+        ]
     },
     {
         id: 6,
         name : "Oral Surgery",
-        link: oralSurgery
+        avalibleSit : [
+            {time:"5:00 AM - 6:00 AM", site:10},
+            {time:"6:00 AM - 7:00 AM", site:10},
+            {time:"7:00 AM - 8:00 AM", site:10},
+            {time:"8:00 AM - 9:00 AM", site:10},
+            {time:"9:00 AM - 10:00 AM", site:10},
+            
+        ]
     },
 ]
+

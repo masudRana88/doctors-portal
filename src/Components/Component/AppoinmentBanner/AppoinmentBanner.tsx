@@ -4,11 +4,11 @@ import chair from "../../../images/images/chair.png"
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 const AppoinmentBanner = () => {
-    const [selected, setSelected] = React.useState<Date>();
-    console.log(selected);
+    const [date, setDate] = React.useState<Date>();
+    console.log(date);
     let footer = <p>Please pick a day.</p>;
-    if (selected) {
-      footer = <p>You picked {format(selected, 'PP')}.</p>;
+    if (date) {
+      footer = <p>You picked {format(date, 'PP')}.</p>;
     }
     return (
         <section className='w-full px-4 h-full md:h-[94vh] bg-bannerBG'>
@@ -27,10 +27,10 @@ const AppoinmentBanner = () => {
                 <div className='flex justify-center w-full pb-10 mt-10 justify-ce md:w-2/4 md:mt-0'>
                 <DayPicker
                     mode="single"
-                    selected={selected}
-                    onSelect={setSelected}
+                    selected={date}
+                    onSelect={setDate}
                     footer={footer}
-                    />
+                />
                 </div>
             </div>
         </section>

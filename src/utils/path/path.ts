@@ -11,9 +11,9 @@ export const reviews : string = "/reviews"
 
 // ====== Appoinment ServiceLink =========
 
-export const teethOrthodontics : string = `${appointmentPage}/teeth-orthodontics`
-export const cosmeticDentistry : string = `${appointmentPage}/cosmetic-dentistry`
-export const teethCleaning : string = `${appointmentPage}/teeth-cleaning`
-export const cavityProtection : string = `${appointmentPage}/cavity-protection`
-export const pediatricDental : string = `${appointmentPage}/pediatricDental`
-export const oralSurgery : string = `${appointmentPage}/oral-surgery`
+// export const teethOrthodontics : string = `${appointmentPage}/teeth-orthodontics`
+// export const cosmeticDentistry : string = `${appointmentPage}/cosmetic-dentistry`
+// export const teethCleaning : string = `${appointmentPage}/teeth-cleaning`
+// export const cavityProtection : string = `${appointmentPage}/cavity-protection`
+// export const pediatricDental : string = `${appointmentPage}/pediatric-dental`
+// export const oralSurgery : string = `${appointmentPage}/oral-surgery`
