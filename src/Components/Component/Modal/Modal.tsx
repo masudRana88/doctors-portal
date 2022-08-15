@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../Redux/store';
+import React from 'react';
 import { MdWarning ,MdClose} from "react-icons/md";
 const Modal = ({show,setShow,time,name,selectedDate}: props) => {
 

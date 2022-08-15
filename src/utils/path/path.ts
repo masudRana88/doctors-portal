@@ -4,6 +4,7 @@ export const aboutPage : string = "/about"
 export const appointmentPage : string = "/appointment"
 export const contactPage : string = "/contact"
 export const loginPage : string = "/login"
+export const singUpPage : string = "/sing-up"
 
 // Div Id
 

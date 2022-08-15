@@ -5,6 +5,7 @@ import { FaBars } from "react-icons/fa";
 import {  NavHashLink } from 'react-router-hash-link';
 import { navManu } from '../../../utils/navBar/navManu';
 import { NavLink } from 'react-router-dom';
+import { homePage } from '../../../utils/path/path';
 const NavBar = () => {
     const location = useLocation()
     const isActive =(n:{link:string}, location:{pathname:string; hash:string}) => {
@@ -16,7 +17,7 @@ const NavBar = () => {
         <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-transparent shadow-lg md:pt-5 md:pb-5'>
            <nav className='flex items-center justify-between mx-auto md:container'>
                 <div>
-                    <samp className='text-lg font-bold'>Doctor Portal</samp>
+                    <NavHashLink to="#home" smooth className='text-lg font-bold'>Doctor Portal</NavHashLink>
                 </div>
                 <div>
                     {/* MD display */}
