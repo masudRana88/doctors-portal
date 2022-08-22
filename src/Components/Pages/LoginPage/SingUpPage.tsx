@@ -1,12 +1,40 @@
 import React from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { clearUserMsg, singUpUser } from '../../../Redux/Slice/userSlice/userSlice';
+import { AppDispatch } from '../../../Redux/store';
 import { loginPage } from '../../../utils/path/path';
 
 const SingUpPage = () => {
+type Inputs = {
+    fname : string,
+    lname: string,
+    email: string,
+    password: string|number,
+    };
+  const dicpach = useDispatch<AppDispatch>()
+  const { register, handleSubmit, watch, formState: { errors },reset  } = useForm<Inputs>();
+   // Hendle Login
+   const onSubmit: SubmitHandler<Inputs> = data => {
+    const userData = {
+        name :  `${data.fname} ${data.lname}`,
+        email : data.email,
+        password : data.password,
+    }
+    dicpach(singUpUser(userData))
+    reset()
+  };
+  const msg: string = useSelector<any, string>(state=> state.user.message)
+  if(msg){
+    setTimeout(() => dicpach(clearUserMsg()), 3000);
+  }
     return (
         <div className='mt-[66px] container mx-auto'>
-            <section className="h-screen">
-                <div className="h-full px-6 text-gray-800">
+            <section className="">
+                <div className="px-6 text-gray-800 mt-36">
+                <>{msg && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">{msg}</div>}</>
                     <div
                     className="flex flex-wrap items-center justify-center h-full md:flex-row-reverse xl:justify-center lg:justify-between g-6"
                     >
@@ -20,7 +48,7 @@ const SingUpPage = () => {
                             />
                         </div>
                         <div className="mb-12 xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 md:mb-0">
-                            <form>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="flex flex-row items-center justify-center lg:justify-start">
                                 <p className="mb-0 mr-4 text-lg">Sign in with</p>
                                 <button
@@ -80,51 +108,35 @@ const SingUpPage = () => {
 
                             {/* <!-- First Name input --> */}
                             <div className="mb-6">
-                                <input
-                                type="text"
-                                className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                placeholder="Enter your First name"
-                                required
-                                />
+                                <input placeholder='Enter your last Name' {...register("fname",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                {errors.fname && <span>This field is required</span>}
                             </div>
-                            {/* <!-- First Name input --> */}
+                            {/* <!-- Last Name input --> */}
                             <div className="mb-6">
-                                <input
-                                type="text"
-                                className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                placeholder="Enter your Lest name"
-                                required
-                                />
+                                <input placeholder='Enter your last Name' {...register("lname",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                {errors.lname && <span>This field is required</span>}
                             </div>
 
                             {/* <!-- Email input --> */}
                             <div className="mb-6">
-                                <input
-                                type="email"
-                                className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                placeholder="Email address"
-                                required
-                                />
+                                <input placeholder='Email' {...register("email",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                {errors.email && <span>This field is required</span>}
                             </div>
 
                             {/* <!-- Password input --> */}
                             <div className="mb-6">
-                                <input
-                                type="password"
-                                className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                placeholder="Password"
-                                />
+                                <input placeholder='Password' {...register("password",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+                                {errors.password && <span>This field is required</span>}
                             </div>
 
                            
 
                             <div className="text-center lg:text-left">
-                                <button
-                                type="button"
+                            <input
+                                type="submit"
+                                value="Sing up"
                                 className="inline-block py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-                                >
-                                Sing Up
-                                </button>
+                            />
                                 <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
                                 Already you have an account?
                                 <NavLink
@@ -133,7 +145,7 @@ const SingUpPage = () => {
                                     >Login</NavLink>
                                 </p>
                             </div>
-                            </form>
+                        </form>
                         </div>
                     </div>
                 </div>

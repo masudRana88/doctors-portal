@@ -12,7 +12,7 @@ import LoginPage from './Components/Pages/LoginPage/LoginPage';
 import SingUpPage from './Components/Pages/LoginPage/SingUpPage';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { loginUserWithToken } from './Redux/Slice/userSlice/userSlice';
+import { clearUserMsg, loginUserWithToken } from './Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from './Redux/store';
 
 function App() {
@@ -22,7 +22,8 @@ function App() {
   
   useEffect(() => {
     if(token && token.startsWith("Bearer")){
-      dispatch(loginUserWithToken(token))
+      dispatch(loginUserWithToken(token));
+      dispatch(clearUserMsg());
     }
   },[])
   return (
