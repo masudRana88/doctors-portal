@@ -1,16 +1,14 @@
 
 import { useLocation, } from 'react-router-dom';
-
 import { FaBars } from "react-icons/fa";
 import {  NavHashLink } from 'react-router-hash-link';
 import { navManu } from '../../../utils/navBar/navManu';
+import { NavLink } from 'react-router-dom';
+import { aboutPage, appointmentPage, contactPage, homePage, loginPage } from '../../../utils/path/path';
+import { Link } from 'react-router-dom';
 const NavBar = () => {
     const location = useLocation()
-    const isActive =(n:{link:string}, location:{pathname:string; hash:string}) => {
-        const link = n.link;
-        const hash = "/"+location.hash;
-        return (location.pathname === link ) || (link === hash )
-    }
+    
     return (
         <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-white shadow-lg md:pt-5 md:pb-5'>
            <nav className='flex items-center justify-between mx-auto bg-white md:container'>
@@ -20,16 +18,11 @@ const NavBar = () => {
                 <div>
                     {/* MD display */}
                     <ul className='hidden md:flex'>
-                        
-                        {
-                            navManu.map(n=>(
-                            <li key={n.id}>
-                                <NavHashLink smooth  to={n.link} className={`${ isActive(n,location)? "px-2 py-2 mr-4 text-white bg-slate-600 rounded-md ": "px-2 py-2 mr-4 text-black rounded-md "}`}>
-                                   {n.name}
-                                 </NavHashLink>
-                            </li>
-                            ))
-                        }
+                        <li><NavHashLink smooth to="/#home" className="px-2 py-2 mr-4 text-black rounded-md" >Home</NavHashLink></li>
+                        <li><NavLink to={aboutPage} className="px-2 py-2 mr-4 text-black rounded-md" >About</NavLink></li>
+                        <li><NavLink to={appointmentPage} className="px-2 py-2 mr-4 text-black rounded-md" >Appointment</NavLink></li>
+                        <li><NavHashLink smooth to="/#contactus"  className="px-2 py-2 mr-4 text-black rounded-md">Contuct</NavHashLink></li>
+                        <li><NavLink to={loginPage} className="px-2 py-2 mr-4 text-black rounded-md" >Login</NavLink></li>
                     </ul>
 
                     {/* SM Display */}
@@ -66,9 +59,9 @@ const NavBar = () => {
                             className="absolute z-50 hidden float-left py-2 m-0 mt-1 text-base text-left list-none bg-white border-none rounded-lg shadow-lg dropdown-menu min-w-max bg-clip-padding"
                             aria-labelledby="dropdownMenuButton1"
                         >
-                            {navManu.map((n)=>(
+                            {/* {navManu.map((n)=>(
                                 <li key={n.id}><NavHashLink smooth className={`${isActive(n,location) ? "block w-full px-4 py-2 text-sm font-normal text-white  whitespace-nowrap bg-bgGray" : " block w-full px-4 py-2 text-sm font-normal text-gray-700 bg-transparent  whitespace-nowrap hover:bg-gray-100"}`} key={n.id} to={n.link}>{n.name}</NavHashLink></li>
-                            ))}
+                            ))} */}
                         </ul>
                         </div>
                     </div>

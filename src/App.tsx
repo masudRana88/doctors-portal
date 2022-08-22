@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearUserMsg, loginUserWithToken } from './Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from './Redux/store';
+import RequireAuth from './Hooks/RequireAuth';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -32,7 +33,9 @@ function App() {
       <Routes>
           {/* <Route path="/" element={<HomePage/>}/> */}
           <Route path={homePage} element={<HomePage/>}/>
-          <Route path={appointmentPage} element={<AppointmentPage></AppointmentPage>}/>
+          <Route path={appointmentPage} element={<RequireAuth>
+              <AppointmentPage></AppointmentPage>
+          </RequireAuth>}/>
           <Route path={aboutPage} element={<AboutPage />}/>
           <Route path={loginPage} element={<LoginPage />}/>
           <Route path={singUpPage} element={<SingUpPage />}/>

@@ -2,7 +2,7 @@
 export const homePage : string = "/"
 export const aboutPage : string = "/about"
 export const appointmentPage : string = "/appointment"
-export const contactPage : string = "/contact"
+export const contactPage : string = "#contactus"
 export const loginPage : string = "/login"
 export const singUpPage : string = "/sing-up"
 

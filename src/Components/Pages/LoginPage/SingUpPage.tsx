@@ -2,7 +2,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { clearUserMsg, singUpUser } from '../../../Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from '../../../Redux/store';
 import { loginPage } from '../../../utils/path/path';
@@ -14,6 +14,8 @@ type Inputs = {
     email: string,
     password: string|number,
     };
+
+
   const dicpach = useDispatch<AppDispatch>()
   const { register, handleSubmit, watch, formState: { errors },reset  } = useForm<Inputs>();
    // Hendle Login

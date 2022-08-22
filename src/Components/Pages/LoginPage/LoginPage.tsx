@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { clearUserMsg, loginUser } from '../../../Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from '../../../Redux/store';
 import { singUpPage } from '../../../utils/path/path';
@@ -16,13 +16,19 @@ const LoginPage = () => {
     email: string,
     password: string|number,
   };
-  
+  // navegate
+  const navigate = useNavigate();
+  const location:any = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
+
   const dicpach = useDispatch<AppDispatch>()
   const { register, handleSubmit, watch, formState: { errors },reset  } = useForm<Inputs>();
   
   // Hendle Login
-  const onSubmit: SubmitHandler<Inputs> = data => {
-    dicpach(loginUser(data))
+  const onSubmit: SubmitHandler<Inputs> = async(data) => {
+    await dicpach(loginUser(data))
+    navigate(from);
     reset()
   };
 
@@ -30,11 +36,9 @@ const LoginPage = () => {
   if(msg){
     setTimeout(() => dicpach(clearUserMsg()), 3000);
   }
-  console.log(msg);
     return(
         <div className='mt-[66px] container mx-auto'>
 <section className="">
-
   <div className="px-6 text-gray-800 mt-36">
       <>{msg && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">{msg}</div>}</>
     <div className="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
