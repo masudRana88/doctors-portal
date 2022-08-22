@@ -1,18 +1,44 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { clearUserMsg, loginUser } from '../../../Redux/Slice/userSlice/userSlice';
+import { AppDispatch } from '../../../Redux/store';
 import { singUpPage } from '../../../utils/path/path';
 
+
+
 const LoginPage = () => {
-    return (
+
+  type Inputs = {
+    email: string,
+    password: string|number,
+  };
+  
+  const dicpach = useDispatch<AppDispatch>()
+  const { register, handleSubmit, watch, formState: { errors },reset  } = useForm<Inputs>();
+  
+  // Hendle Login
+  const onSubmit: SubmitHandler<Inputs> = data => {
+    dicpach(loginUser(data))
+    reset()
+  };
+
+  const msg: string = useSelector<any, string>(state=> state.user.message)
+  if(msg){
+    setTimeout(() => dicpach(clearUserMsg()), 3000);
+  }
+  console.log(msg);
+    return(
         <div className='mt-[66px] container mx-auto'>
-            <section className="h-screen">
-  <div className="h-full px-6 text-gray-800">
-    <div
-      className="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6"
-    >
-      <div
-        className="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0"
-      >
+<section className="">
+
+  <div className="px-6 text-gray-800 mt-36">
+      <>{msg && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">{msg}</div>}</>
+    <div className="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
+      <div className="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
         <img
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
           className="w-full"
@@ -20,7 +46,7 @@ const LoginPage = () => {
         />
       </div>
       <div className="mb-12 xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 md:mb-0">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-row items-center justify-center lg:justify-start">
             <p className="mb-0 mr-4 text-lg">Sign in with</p>
             <button
@@ -80,22 +106,14 @@ const LoginPage = () => {
 
           {/* <!-- Email input --> */}
           <div className="mb-6">
-            <input
-              type="text"
-              className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleFormControlInput2"
-              placeholder="Email address"
-            />
+            <input placeholder='Email' {...register("email",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+            {errors.email && <span>This field is required</span>}
           </div>
 
           {/* <!-- Password input --> */}
           <div className="mb-6">
-            <input
-              type="password"
-              className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              id="exampleFormControlInput2"
-              placeholder="Password"
-            />
+            <input placeholder='Password' {...register("password",{ required: true })} className="block w-full px-4 py-2 m-0 text-xl font-normal text-gray-700 transition ease-in-out bg-white border border-gray-300 border-solid rounded form-control bg-clip-padding focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" />
+            {errors.password && <span>This field is required</span>}
           </div>
 
           <div className="flex items-center justify-between mb-6">
@@ -112,12 +130,11 @@ const LoginPage = () => {
           </div>
 
           <div className="text-center lg:text-left">
-            <button
-              type="button"
+            <input
+              type="submit"
+              value="login"
               className="inline-block py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
-            >
-              Login
-            </button>
+            />
             <p className="pt-1 mt-2 mb-0 text-sm font-semibold">
               Don't have an account?
               <NavLink
@@ -130,9 +147,12 @@ const LoginPage = () => {
       </div>
     </div>
   </div>
+
 </section>
         </div>
     );
 };
+
+
 
 export default LoginPage;

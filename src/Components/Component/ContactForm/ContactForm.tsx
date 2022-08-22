@@ -35,7 +35,7 @@ const ContactForm = () => {
                
                 
                 <div className='flex items-center justify-center w-full'>
-                    <input type="submit" className='px-4 py-2.5 rounded-md font-semibold text-white bg-gradient-to-bl from-bgGreenR to-bgGreenL' />
+                    <input type="submit" className='px-4 py-2.5 cursor-pointer rounded-md font-semibold text-white bg-gradient-to-bl from-bgGreenR to-bgGreenL' />
                 </div>
                 </form>
             </div>

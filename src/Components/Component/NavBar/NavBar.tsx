@@ -4,8 +4,6 @@ import { useLocation, } from 'react-router-dom';
 import { FaBars } from "react-icons/fa";
 import {  NavHashLink } from 'react-router-hash-link';
 import { navManu } from '../../../utils/navBar/navManu';
-import { NavLink } from 'react-router-dom';
-import { homePage } from '../../../utils/path/path';
 const NavBar = () => {
     const location = useLocation()
     const isActive =(n:{link:string}, location:{pathname:string; hash:string}) => {
@@ -14,10 +12,10 @@ const NavBar = () => {
         return (location.pathname === link ) || (link === hash )
     }
     return (
-        <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-transparent shadow-lg md:pt-5 md:pb-5'>
-           <nav className='flex items-center justify-between mx-auto md:container'>
+        <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-white shadow-lg md:pt-5 md:pb-5'>
+           <nav className='flex items-center justify-between mx-auto bg-white md:container'>
                 <div>
-                    <NavHashLink to="#home" smooth className='text-lg font-bold'>Doctor Portal</NavHashLink>
+                    <NavHashLink to="/" smooth className='text-lg font-bold'>Doctor Portal</NavHashLink>
                 </div>
                 <div>
                     {/* MD display */}

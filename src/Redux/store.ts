@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import dateSlice from './Slice/DateSlice/dateSlice'
+import userSlice from './Slice/userSlice/userSlice'
 // ...
 const store = configureStore({
   reducer: {
-    date: dateSlice
+    date: dateSlice,
+    user: userSlice
   },
 })
 
