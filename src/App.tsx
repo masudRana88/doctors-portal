@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'tw-elements';
-import { aboutPage, appointmentPage, homePage, loginPage, singUpPage, } from './utils/path/path';
+import { aboutPage, appointmentPage, homePage, loginPage, profilePage, singUpPage, } from './utils/path/path';
 import NavBar from './Components/Component/NavBar/NavBar';
 import AppointmentPage from './Components/Pages/AppointmentPage/AppointmentPage';
 import Footer from './Components/Component/Footer/Footer';
@@ -15,6 +15,8 @@ import { useDispatch } from 'react-redux';
 import { clearUserMsg, loginUserWithToken } from './Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from './Redux/store';
 import RequireAuth from './Hooks/RequireAuth';
+import ProfilePage from './Components/Pages/ProfilePage/ProfilePage';
+import Profile from './Components/Component/Profile/Profile';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -39,6 +41,9 @@ function App() {
           <Route path={aboutPage} element={<AboutPage />}/>
           <Route path={loginPage} element={<LoginPage />}/>
           <Route path={singUpPage} element={<SingUpPage />}/>
+          <Route path={profilePage} element={<ProfilePage />}>
+            <Route path='profile' element={<Profile />}/>
+          </Route>
       </Routes>
       <Footer/>   
     </div>

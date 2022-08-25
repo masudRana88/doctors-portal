@@ -26,7 +26,9 @@ type initialStateUser ={
     jwt: string|null,
     isAdmin: boolean,
     isLoding: Boolean,
-    message : string |null
+    message : string |null,
+    address: string|null,
+    phone: number|null,
 }
 
 // get JWT from localStorage
@@ -37,6 +39,8 @@ const initialState: initialStateUser ={
     id : "",
     name : "",
     email:"",
+    address : null,
+    phone: null,
     jwt: token,
     isLoding : false,
     isAdmin: false,
@@ -79,22 +83,56 @@ export const loginUserWithToken = createAsyncThunk("user/login/token",async(data
 
 })
 
+// Update user 
+
+export const updateUser = createAsyncThunk("user/update",async(data:any)=>{
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:5000/user/update',
+    data: {
+      email: data.email,
+      name: data.name,
+      phone: data.phone,
+      address: data.address,
+      id: data.id,
+    }
+  };
+  
+  const user = await axios.request(options)
+  return user;
+  
+})
 const userSlice = createSlice({
     name : "user",
     initialState ,
     reducers :{ 
+      // Clear Msg
         clearUserMsg : (state)=>{
             state.message = null
-        }
+        },
+        // Logout User
+        logoutUser: (state)=>{
+            state.email = ""
+            state.id = ""
+            state.isAdmin = false
+            state.jwt = ''
+            state.name = '';
+            state.message = ''
+            state.isLoding = false
+            state.phone = null;
+            state.address = "";
+        },
     },
     extraReducers: (builder)=>{
-        // sing UP user 
+        // sing UP user  =============================================================
         builder.addCase(singUpUser.fulfilled, (state, action) => {
             state.email = action.payload.data.email
             state.id = action.payload.data.id
             state.isAdmin = action.payload.data.isAdmin
             state.jwt = action.payload.data.jwt
             state.name = action.payload.data.name;
+            state.phone = action.payload.data.phone;
+            state.address = action.payload.data.address;
             state.message = action.payload.data.message
             state.isLoding = false
           })
@@ -116,11 +154,13 @@ const userSlice = createSlice({
             state.message = "Can not be login User!! Please try again..."
             state.isLoding = false
           })
-        // Login user with email and password
+        // Login user with email and password =============================================================
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.email = action.payload.data.email
             state.id = action.payload.data.id
             state.isAdmin = action.payload.data.isAdmin
+            state.phone = action.payload.data.phone;
+            state.address = action.payload.data.address;
             state.jwt = action.payload.data.jwt
             state.name = action.payload.data.name;
             state.message = action.payload.data.message
@@ -144,12 +184,14 @@ const userSlice = createSlice({
             state.message = "Can not be login User!! Please try again..."
             state.isLoding = false
           })
-        //   Login with jwt token
+        //   Login with jwt token =============================================================
         builder.addCase(loginUserWithToken.fulfilled, (state, action) => {
             state.email = action.payload.data.email
             state.id = action.payload.data.id
             state.isAdmin = action.payload.data.isAdmin
             state.jwt = action.payload.data.jwt
+            state.phone = action.payload.data.phone;
+            state.address = action.payload.data.address;
             state.name = action.payload.data.name;
             state.message = null
             state.isLoding = false
@@ -172,9 +214,26 @@ const userSlice = createSlice({
             state.message = "Unathorized login failed"
             state.isLoding = false
           })
+        // update usee =============================================================
+        builder.addCase(updateUser.fulfilled, (state, action) => {
+          state.email = action.payload.data.email
+          state.phone = action.payload.data.phone;
+          state.address = action.payload.data.address;
+          state.name = action.payload.data.name;
+          state.message = "user is update !!"
+          state.isLoding = false
+      })
+      builder.addCase(updateUser.pending, (state, action) => {
+          state.message = ''
+          state.isLoding = true
+        })
+      builder.addCase(updateUser.rejected, (state, action) => {
+          state.message = "Unathorized login failed"
+          state.isLoding = false
+        })
     }
 })
 
-export const {clearUserMsg} = userSlice.actions
+export const {clearUserMsg,logoutUser} = userSlice.actions
 export default userSlice.reducer
 

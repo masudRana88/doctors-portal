@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { MdOutlinePhoneInTalk } from "react-icons/md";
 const InfoCard = ({image,title, info ,colorGreen }:props) => {
     return (
 
