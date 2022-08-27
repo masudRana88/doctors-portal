@@ -7,6 +7,7 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { clearUserMsg, loginUser } from '../../../Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from '../../../Redux/store';
 import { singUpPage } from '../../../utils/path/path';
+import Message from '../../Component/Message';
 
 
 
@@ -20,7 +21,12 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const location:any = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
+  const navigatePath = (from:string)=>{
+    if(from === "/"){
+      return null;
+    }
+    navigate(from);
+  }
 
   const dicpach = useDispatch<AppDispatch>()
   const { register, handleSubmit, watch, formState: { errors },reset  } = useForm<Inputs>();
@@ -28,7 +34,7 @@ const LoginPage = () => {
   // Hendle Login
   const onSubmit: SubmitHandler<Inputs> = async(data) => {
     await dicpach(loginUser(data))
-    navigate(from);
+    navigatePath(from)
     reset()
   };
 
@@ -40,7 +46,8 @@ const LoginPage = () => {
         <div className='mt-[66px] container mx-auto'>
 <section className="">
   <div className="px-6 text-gray-800 mt-36">
-      <>{msg && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">{msg}</div>}</>
+            {/* Message show */}
+      {msg && <Message>{msg}</Message>}
     <div className="flex flex-wrap items-center justify-center h-full xl:justify-center lg:justify-between g-6">
       <div className="mb-12 grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 md:mb-0">
         <img

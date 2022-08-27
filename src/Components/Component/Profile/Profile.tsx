@@ -28,9 +28,9 @@ export default function Profile() {
     console.log(email,name,phone,address,id);
   }
   return (
-    <div className='w-full h-full mx-auto bg-primary'>
+    <div className='w-full h-full mx-auto'>
         <div className='w-5/6 p-5 mt-5 ml-5 rounded-md shadow bg-slate-100'>
-          <h4 className='mb-10 text-2xl font-normal text-center'>My Profile</h4>
+          <h4 className='mt-8 mb-10 text-2xl font-normal text-center'>My Profile</h4>
           <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center">
             {/* Email */}
             <div className="mb-3 xl:w-96">
@@ -53,7 +53,7 @@ export default function Profile() {
               <textarea id="address" defaultValue={address} onBlur={(e)=>setAddress(e.target.value)}  placeholder="Enter Your Address"  className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"/>
             </div>
             
-            <input type="submit" value="Update" className="inline w-96 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"/>
+            <input type="submit" value="Update" className="mb-8 inline w-96 px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"/>
         </form>
         </div>
     </div>

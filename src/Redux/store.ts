@@ -1,11 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
+import createAppoinmentSlice from './Slice/AppoinmentSlice/createAppoinmentSlice'
+import userAppoinmentSlice from './Slice/AppoinmentSlice/userAppoinmentSlice'
 import dateSlice from './Slice/DateSlice/dateSlice'
 import userSlice from './Slice/userSlice/userSlice'
 // ...
 const store = configureStore({
   reducer: {
     date: dateSlice,
-    user: userSlice
+    user: userSlice,
+    bookAppoinment : createAppoinmentSlice,
+    userAppoinment : userAppoinmentSlice
   },
 })
 

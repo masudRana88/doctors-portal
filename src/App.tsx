@@ -17,6 +17,7 @@ import { AppDispatch } from './Redux/store';
 import RequireAuth from './Hooks/RequireAuth';
 import ProfilePage from './Components/Pages/ProfilePage/ProfilePage';
 import Profile from './Components/Component/Profile/Profile';
+import Appointments from './Components/Component/Profile/Appointments/Appointments';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -43,6 +44,7 @@ function App() {
           <Route path={singUpPage} element={<SingUpPage />}/>
           <Route path={profilePage} element={<ProfilePage />}>
             <Route path='profile' element={<Profile />}/>
+            <Route path='appoinments' element={<Appointments />}/>
           </Route>
       </Routes>
       <Footer/>   

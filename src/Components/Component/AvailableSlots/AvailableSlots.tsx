@@ -6,12 +6,12 @@ import Modal from '../Modal/Modal';
 
 
 const AvailableSlots = ({slots}:props) => {
-    const [name,setName] = useState('')
+    const [slotsName,setslotsName] = useState('')
     const [time,setTime] = useState("")
     const [showModal,setShowModal] = useState(false)
     const selectedDate = useSelector((staet: RootState)=> staet.date.selectedDate)
     useEffect(()=>{
-        setName(slots.name)
+        setslotsName(slots.name)
     },[slots])
 
     const handleBook =(s: {time: string, site:number})=>{
@@ -20,12 +20,12 @@ const AvailableSlots = ({slots}:props) => {
     }
     return (
     <div className='px-4 mt-28'>
-        <h3 className='mb-2 text-xl font-semibold text-center text-bgGreenL'>Available slots for {name}.</h3>
+        <h3 className='mb-2 text-xl font-semibold text-center text-bgGreenL'>Available slots for {slotsName}.</h3>
         <div className='grid grid-cols-1 px-4 mt-10 md:grid-cols-3 md:px-10 gap-7'>
             {
                slots.avalibleSit.map((s,index)=>(
                 <div key={index} className='flex flex-col items-center justify-center px-10 py-10 md:px-32 rounded-2xl shadow-cardShadow'>
-                    <span className='mb-2 text-lg font-semibold text-bgGreenL'>{name}</span>
+                    <span className='mb-2 text-lg font-semibold text-bgGreenL'>{slotsName}</span>
                     <p className='mb-2 text-base text-bgGray'>{s.time}</p>
                     <p className='mb-2 text-base text-bgGray'>{s.site} Sites Available</p>
                     <span onClick={()=>handleBook(s)}><Button>Book Appointment</Button></span>
@@ -34,7 +34,7 @@ const AvailableSlots = ({slots}:props) => {
             }
         </div>
         {/* Modal */}
-        <Modal show={showModal} setShow={setShowModal} time={time} name={name} selectedDate={selectedDate}/>
+        <Modal show={showModal} setShow={setShowModal} time={time} slotsName={slotsName} selectedDate={selectedDate}/>
     </div>
     );
 };
