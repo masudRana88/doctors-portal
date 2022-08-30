@@ -73,12 +73,13 @@ export const loginUser = createAsyncThunk("user/login",async(data:any)=>{
 
 // login user with jwt 
 export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
-
+  let token = localStorage.getItem("user")? localStorage.getItem("user") : null;
+   token = token && JSON.parse(token);
   const options = {
     method: 'GET',
     url: 'http://localhost:5000/user/login/token',
     headers: {
-      token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDRkNjcyMGE4Mzc3YTQxYThkN2NlNyIsImVtYWlsIjoibWFoaW1AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjYxNzc5MzM2LCJleHAiOjE2NjQzNzEzMzZ9.Ni7EzJaW5UASnlwgOuN758gLeTUoNxo6f5dzreEcvNU'
+      token: token ? token : ""
     }
   };
   

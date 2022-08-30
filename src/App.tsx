@@ -28,7 +28,7 @@ function App() {
   
   useEffect(() => {
       dispatch(getUserInfo());
-      // dispatch(clearUserMsg());
+      dispatch(clearUserMsg());
 
   },[])
   return (
