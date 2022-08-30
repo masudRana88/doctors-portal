@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import allAppointmentSlice from './Slice/AppoinmentSlice/allAppointmentSlice'
 import createAppoinmentSlice from './Slice/AppoinmentSlice/createAppoinmentSlice'
 import userAppoinmentSlice from './Slice/AppoinmentSlice/userAppoinmentSlice'
 import dateSlice from './Slice/DateSlice/dateSlice'
@@ -9,7 +10,8 @@ const store = configureStore({
     date: dateSlice,
     user: userSlice,
     bookAppoinment : createAppoinmentSlice,
-    userAppoinment : userAppoinmentSlice
+    userAppoinment : userAppoinmentSlice,
+    allAppointments: allAppointmentSlice,
   },
 })
 

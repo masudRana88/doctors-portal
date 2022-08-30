@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { MdWarning ,MdClose} from "react-icons/md";
 import { useDispatch } from 'react-redux';
+import { deleteAppointments } from '../../Redux/Slice/AppoinmentSlice/allAppointmentSlice';
 import { deleteUserAppointments } from '../../Redux/Slice/AppoinmentSlice/userAppoinmentSlice';
 import { AppDispatch } from '../../Redux/store';
 
-const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning}: props) => {
+const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning,isAdmin}: props) => {
    
     const dispatch = useDispatch<AppDispatch>()
 
@@ -12,7 +13,11 @@ const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning}: props)
         return null
     }
     const handleDelete = ()=>{
-        dispatch(deleteUserAppointments(deletId))
+        if(isAdmin){
+            dispatch(deleteAppointments(deletId))
+        }else{
+            dispatch(deleteUserAppointments(deletId))
+        }
         setDeletId("")
     }
    
@@ -53,6 +58,7 @@ type props ={
     setDeletId: (value: string) => void,
     body: string,
     worning: boolean,
+    isAdmin:boolean,
 }
 
 export default Aleart;

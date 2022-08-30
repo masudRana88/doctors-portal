@@ -32,17 +32,17 @@ type initialStateUser ={
     phone: number|null,
 }
 
-// get JWT from localStorage
-const token : string = localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')||"") : "";
+
+
 
 // states 
 const initialState: initialStateUser ={
     id : "",
     name : "",
-    email:"",
+    email: localStorage.getItem('email')? JSON.parse(localStorage.getItem('email')||"") : "",
     address : null,
     phone: null,
-    jwt: token,
+    jwt: localStorage.getItem('user')? JSON.parse(localStorage.getItem('user')||"") : "",
     isLoding : false,
     isAdmin: false,
     message: null,
@@ -58,33 +58,33 @@ export const singUpUser = createAsyncThunk("user/sungUp",async(userData:bodyData
 
    const user = await axios.request(options)
    localStorage.setItem("user", JSON.stringify(user.data.jwt))
+   localStorage.setItem("email", JSON.stringify(user.data.email))
    return user
     
 })
 // Login user with email and password
 export const loginUser = createAsyncThunk("user/login",async(data:any)=>{
     const user = await axios.post("http://localhost:5000/user/login/",data )
+    localStorage.setItem("email", JSON.stringify(user.data.email))
     localStorage.setItem("user", JSON.stringify(user.data.jwt))
     return user
 })
 
 
-// login with JWT
-export const loginUserWithToken = createAsyncThunk("user/login/token",async(data:any|string)=>{
-    const options = {
-      method: 'GET',
-      url: 'http://localhost:5000/user/login/token',
-      headers: {
-        token: data
-      }
-    };
-    
-    const user = await axios.request(options)
-    return user
+// login user with jwt 
+export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
 
+  const options = {
+    method: 'GET',
+    url: 'http://localhost:5000/user/login/token',
+    headers: {
+      token: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDRkNjcyMGE4Mzc3YTQxYThkN2NlNyIsImVtYWlsIjoibWFoaW1AZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaWF0IjoxNjYxNzc5MzM2LCJleHAiOjE2NjQzNzEzMzZ9.Ni7EzJaW5UASnlwgOuN758gLeTUoNxo6f5dzreEcvNU'
+    }
+  };
+  
+ const res = await axios.request(options)
+ return res.data
 })
-
-// Update user 
 
 export const updateUser = createAsyncThunk("user/update",async(data:any)=>{
   const options = {
@@ -122,7 +122,11 @@ const userSlice = createSlice({
             state.isLoding = false
             state.phone = null;
             state.address = "";
+            
         },
+        loginUserWithToken : ()=>{
+
+        }
     },
     extraReducers: (builder)=>{
         // sing UP user  =============================================================
@@ -185,36 +189,38 @@ const userSlice = createSlice({
             state.message = "Can not be login User!! Please try again..."
             state.isLoding = false
           })
-        //   Login with jwt token =============================================================
-        builder.addCase(loginUserWithToken.fulfilled, (state, action) => {
-            state.email = action.payload.data.email
-            state.id = action.payload.data.id
-            state.isAdmin = action.payload.data.isAdmin
-            state.jwt = action.payload.data.jwt
-            state.phone = action.payload.data.phone;
-            state.address = action.payload.data.address;
-            state.name = action.payload.data.name;
-            state.message = null
-            state.isLoding = false
+          // ============= get user info =================
+          
+        builder.addCase(getUserInfo.pending, (state, action) => {
+          state.id = ""
+          state.isAdmin = false
+          state.jwt = ''
+          state.name = '';
+          state.message = ''
+          state.isLoding = true
         })
-        builder.addCase(loginUserWithToken.pending, (state, action) => {
-            state.email = ""
-            state.id = ""
-            state.isAdmin = false
-            state.jwt = ''
-            state.name = '';
-            state.message = ''
-            state.isLoding = true
-          })
-        builder.addCase(loginUserWithToken.rejected, (state, action) => {
-            state.email = ""
-            state.id = ""
-            state.isAdmin = false
-            state.jwt = ''
-            state.name = '';
-            state.message = "Unathorized login failed"
+        builder.addCase(getUserInfo.fulfilled, (state, action) => {
+            state.email = action.payload.email
+            state.id = action.payload.id
+            state.isAdmin = action.payload.isAdmin
+            state.phone = action.payload.phone;
+            state.address = action.payload.address;
+            state.name = action.payload.name;
+            state.jwt = action.payload.jwt;
+            state.message = ""
             state.isLoding = false
           })
+        builder.addCase(getUserInfo.rejected, (state, action) => {
+            state.email = ""
+            state.id = ""
+            state.isAdmin = false
+            state.jwt = ''
+            state.name = '';
+            state.message = "Can not be login User!! Please try again..."
+            state.isLoding = false
+          })
+
+        
         // update usee =============================================================
         builder.addCase(updateUser.fulfilled, (state, action) => {
           state.email = action.payload.data.email

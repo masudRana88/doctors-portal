@@ -11,13 +11,14 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../Redux/store";
 import { logoutUser } from "../../../Redux/Slice/userSlice/userSlice";
 import { Link } from "react-router-dom";
+import { clearLocalStorage } from "../../../Hooks/clearLocalStorage";
 const NavBar = () => {
     let email: string | any= useSelector<string | any>(state=>state.user.email);
     const [showLogout, setShowLogout] = useState(false)
     const dispatch = useDispatch<AppDispatch>()
     const hendleLogOut = ()=>{
         dispatch(logoutUser())
-        localStorage.removeItem("user")
+        clearLocalStorage()
     }
     return (
         <div className='fixed top-0 left-0 right-0 w-full px-4 pt-4 pb-4 mx-auto bg-white shadow-lg md:pt-5 md:pb-5'>
