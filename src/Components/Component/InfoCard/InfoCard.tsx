@@ -3,7 +3,7 @@ import React from 'react';
 const InfoCard = ({image,title, info ,colorGreen }:props) => {
     return (
 
-            <div className={`flex flex-col items-center justify-center gap-3 px-4 py-8 md:flex-row md:py-10 md:px-8 rounded-xl  ${colorGreen? "bg-gradient-to-r from-bgGreenL to-bgGreenR": "bg-[#3A4256]"}`}>
+            <div className={`flex flex-col w-[24rem] items-center justify-center gap-3 px-4 py-8 md:flex-row md:py-10 md:px-8 rounded-xl  ${colorGreen? "bg-gradient-to-r from-bgGreenL to-bgGreenR": "bg-[#3A4256]"}`}>
                 <div>
                     <img src={image} alt="" className='w-20 h-20'/>
                 </div>

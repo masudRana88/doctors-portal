@@ -3,9 +3,10 @@ import { MdWarning ,MdClose} from "react-icons/md";
 import { useDispatch } from 'react-redux';
 import { deleteAppointments } from '../../Redux/Slice/AppoinmentSlice/allAppointmentSlice';
 import { deleteUserAppointments } from '../../Redux/Slice/AppoinmentSlice/userAppoinmentSlice';
+import { deleteUsers } from '../../Redux/Slice/userSlice/allUsersSlice';
 import { AppDispatch } from '../../Redux/store';
 
-const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning,isAdmin}: props) => {
+const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning,isUserAppointmnet,isAppoinment,isUser}: props) => {
    
     const dispatch = useDispatch<AppDispatch>()
 
@@ -13,10 +14,12 @@ const Aleart = ({aleart,setAleart,deletId,setDeletId,body,title,worning,isAdmin}
         return null
     }
     const handleDelete = ()=>{
-        if(isAdmin){
+        if(isAppoinment){
             dispatch(deleteAppointments(deletId))
-        }else{
+        }if (isUserAppointmnet) {
             dispatch(deleteUserAppointments(deletId))
+        } else {
+            dispatch(deleteUsers(deletId))
         }
         setDeletId("")
     }
@@ -58,7 +61,9 @@ type props ={
     setDeletId: (value: string) => void,
     body: string,
     worning: boolean,
-    isAdmin:boolean,
+    isUserAppointmnet:boolean,
+    isAppoinment : boolean,
+    isUser : boolean,
 }
 
 export default Aleart;

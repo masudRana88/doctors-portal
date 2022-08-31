@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { getAllAppointments } from '../../../Redux/Slice/AppoinmentSlice/allAppointmentSlice'
+import { getAllAppointments, updateAppointMentStatus } from '../../../Redux/Slice/AppoinmentSlice/allAppointmentSlice'
 import { AppDispatch, RootState } from '../../../Redux/store'
 import { MdDeleteForever } from "react-icons/md";
 import Aleart from '../Aleart'
@@ -22,24 +22,27 @@ export default function AllAppoinments() {
     const [itemId, setItemId] = useState("")
     const [show , setShow] = useState(false)
     const dispatch = useDispatch<AppDispatch>()
-    const adminId = useSelector((state:RootState)=> state.user.id)
+    // const adminId = useSelector((state:RootState)=> state.user.id)
     const appointments = useSelector((state:RootState)=> state.allAppointments.appointments)
     const handleDelete =(id:string)=>{
         setItemId(id)
         setShow(true)
     }
-    const handleOnChanhe = (e: React.ChangeEvent<HTMLSelectElement>)=>{
+    const handleOnChanhe = (e: React.ChangeEvent<HTMLSelectElement>,id:string)=>{
         const status = e.target.value
+        const data = {id, status}
+        dispatch(updateAppointMentStatus(data))
     }
     useEffect(() => {
         dispatch(getAllAppointments())
-    },[adminId])
+    },[])
   return (
     <div className='w-full h-full p-5 mx-auto'>
         <div className='w-full p-5 rounded-md shadow bg-slate-100'>
             <h4 className='mt-8 mb-10 text-2xl font-normal text-center'>All appoinments :</h4>
+            {appointments.length === 0 && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">Emty</div>}
             {/* table start */}
-            <div className="flex flex-col">
+            {appointments.length !== 0 &&<div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden">
@@ -94,7 +97,7 @@ export default function AllAppoinments() {
                                         {item.time}
                                     </td>
                                     <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                        <select onChange={(e)=>handleOnChanhe(e)} className={`px-2 py-1 text-base text-gray-500 rounded-md ${item.status === "panding" ? "bg-yellow-200": item.status === "approved"? "bg-green-200":"bg-red-200"}`}>
+                                        <select onChange={(e)=>handleOnChanhe(e, item._id)} className={`px-2 py-1 text-base text-gray-500 rounded-md ${item.status === "panding" ? "bg-yellow-200": item.status === "approved"? "bg-green-200":"bg-red-200"}`}>
                                             <option value={item.status}>{item.status}</option>
                                             {
                                                 item.status === 'panding' && (<>
@@ -132,9 +135,9 @@ export default function AllAppoinments() {
                     </div>
                     </div>
                 </div>
-            </div>
+            </div>}
             {/* table ends */}
-            {show && <Aleart aleart={show} setAleart={setShow} deletId={itemId} setDeletId={setItemId} worning={true} title="Warning" body='You wantes to delete this Appoitment' isAdmin={true}/>}
+            {show && <Aleart aleart={show} setAleart={setShow} deletId={itemId} setDeletId={setItemId} worning={true} title="Warning" body='You wantes to delete this Appoitment' isAppoinment={true} isUserAppointmnet={false}  isUser={false}/>}
         </div>
     </div>
   )

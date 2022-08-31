@@ -5,7 +5,11 @@ export const appointmentPage : string = "/appointment"
 export const contactPage : string = "#contactus"
 export const loginPage : string = "/login"
 export const singUpPage : string = "/sing-up"
-export const profilePage : string = "/user"
+export const profilePageLink : string = "/user/profile"
+export const myAppointmentPageLink : string = "/user/appoinments"
+export const allAppointmentsLink : string = "/user/all-appoinments"
+export const allUsersPageLink : string = "/user/all-users"
+export const makeAdminPageLink : string = "/user/make-admin"
 
 // Div Id
 

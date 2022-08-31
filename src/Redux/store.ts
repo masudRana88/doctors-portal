@@ -3,6 +3,7 @@ import allAppointmentSlice from './Slice/AppoinmentSlice/allAppointmentSlice'
 import createAppoinmentSlice from './Slice/AppoinmentSlice/createAppoinmentSlice'
 import userAppoinmentSlice from './Slice/AppoinmentSlice/userAppoinmentSlice'
 import dateSlice from './Slice/DateSlice/dateSlice'
+import allUsersSlice from './Slice/userSlice/allUsersSlice'
 import userSlice from './Slice/userSlice/userSlice'
 // ...
 const store = configureStore({
@@ -12,6 +13,7 @@ const store = configureStore({
     bookAppoinment : createAppoinmentSlice,
     userAppoinment : userAppoinmentSlice,
     allAppointments: allAppointmentSlice,
+    allUsers : allUsersSlice
   },
 })
 

@@ -1,5 +1,6 @@
 import axios from "axios"
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { array } from "prop-types";
 
 
 type initialStateType ={
@@ -7,13 +8,7 @@ type initialStateType ={
     isLoding : boolean,
     message : null|string,
 }
-type myOptions= {
-    method: string;
-    url: string;
-    headers: {
-        token: any;
-    };
-}
+
 const initialState:initialStateType ={
     appointments : [],
     isLoding : false,
@@ -22,12 +17,13 @@ const initialState:initialStateType ={
 
 // Get All Appoinment
 export const getAllAppointments = createAsyncThunk("allAppointments/get",async() =>{
-    const token = await localStorage.getItem('user');
-    const options:myOptions = {
+    let token = localStorage.getItem("user")? localStorage.getItem("user") : null;
+    token = token && JSON.parse(token);
+    const options= {
     method: 'GET',
     url: 'http://localhost:5000/appointment/get/all/',
     headers: {
-        token : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDRkNjcyMGE4Mzc3YTQxYThkN2NlNyIsImlhdCI6MTY2MTY3Mjg4NywiZXhwIjoxNjY0MjY0ODg3fQ.zD9H9RlI8-nveHWHu1kr3YfPulHS1YqSwfgdypic5N0"
+        token: token ? token : ""
     }
     };
 
@@ -47,7 +43,22 @@ export const deleteAppointments = createAsyncThunk("allAppointmentSlice/delete",
     return id
    }
 })
+// update user appointments status
+export const updateAppointMentStatus = createAsyncThunk("allAppointmentSlices/update/status",async(data:any) =>{
+    let token = localStorage.getItem("user")? localStorage.getItem("user") : null;
+    token = token && JSON.parse(token);
+    const options = {
+    method: 'PUT',
+    url: `http://localhost:5000/appointment/update/status/${data.id}`,
+    headers: {
+        token: token ? token : ""
+    },
+    data: {status: data.status}
+    };
 
+    const res = await axios.request(options)
+    return data
+})
 const allAppointmentSlice= createSlice({
     name : 'allAppointments',
     initialState,
@@ -55,6 +66,15 @@ const allAppointmentSlice= createSlice({
     extraReducers: (builder)=>{
         builder.addCase(getAllAppointments.fulfilled, (state, action) => {
             state.appointments = action.payload;
+            state.isLoding = false;
+        })
+        builder.addCase(getAllAppointments.rejected, (state, action) => {
+            state.appointments = [];
+            state.isLoding = false;
+        })
+        builder.addCase(getAllAppointments.pending, (state, action) => {
+            state.appointments = [];
+            state.isLoding = true
         })
         // gelete appoinment
         builder.addCase(deleteAppointments.fulfilled, (state, action) => {
@@ -62,9 +82,21 @@ const allAppointmentSlice= createSlice({
             state.message = "Appointment Cancle successfully "
         })
         builder.addCase(deleteAppointments.rejected, (state, action) => {
-           
+            state.message = "Appointment Cancle Failed!! "
         })
         builder.addCase(deleteAppointments.pending, (state, action) => {
+            
+        })
+        // update appoinment state
+        builder.addCase(updateAppointMentStatus.fulfilled, (state, action) => {
+            state.message = "Appointment update successfully ";
+            
+
+        })
+        builder.addCase(updateAppointMentStatus.rejected, (state, action) => {
+            state.message = "Appointment update successfully "
+        })
+        builder.addCase(updateAppointMentStatus.pending, (state, action) => {
             
         })
     },

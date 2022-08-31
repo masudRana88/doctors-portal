@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import 'tw-elements';
-import { aboutPage, appointmentPage, homePage, loginPage, profilePage, singUpPage, } from './utils/path/path';
+import { aboutPage, appointmentPage, homePage, loginPage, profilePageLink, singUpPage, } from './utils/path/path';
 import NavBar from './Components/Component/NavBar/NavBar';
 import AppointmentPage from './Components/Pages/AppointmentPage/AppointmentPage';
 import Footer from './Components/Component/Footer/Footer';
@@ -10,7 +10,6 @@ import HomePage from './Components/Pages/HomePage/HomePage';
 import AboutPage from './Components/Pages/AboutPage/AboutPage';
 import LoginPage from './Components/Pages/LoginPage/LoginPage';
 import SingUpPage from './Components/Pages/LoginPage/SingUpPage';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { clearUserMsg, getUserInfo } from './Redux/Slice/userSlice/userSlice';
 import { AppDispatch } from './Redux/store';
@@ -41,7 +40,7 @@ function App() {
           <Route path={aboutPage} element={<AboutPage />}/>
           <Route path={loginPage} element={<LoginPage />}/>
           <Route path={singUpPage} element={<SingUpPage />}/>
-          <Route path={profilePage} element={<ProfilePage />}>
+          <Route path="user" element={<ProfilePage />}>
             <Route path='profile' element={<Profile />}/>
             <Route path='appoinments' element={<Appointments />}/>
             <Route path='all-appoinments' element={<RequireAuth><AllAppoinments/></RequireAuth>}/>

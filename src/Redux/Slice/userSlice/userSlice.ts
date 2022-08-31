@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from "axios"
-import { SetStateAction } from 'react';
 
 
 // type
@@ -74,7 +73,7 @@ export const loginUser = createAsyncThunk("user/login",async(data:any)=>{
 // login user with jwt 
 export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
   let token = localStorage.getItem("user")? localStorage.getItem("user") : null;
-   token = token && JSON.parse(token);
+  token = token && JSON.parse(token);
   const options = {
     method: 'GET',
     url: 'http://localhost:5000/user/login/token',
@@ -86,7 +85,7 @@ export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
  const res = await axios.request(options)
  return res.data
 })
-
+// Update Users
 export const updateUser = createAsyncThunk("user/update",async(data:any)=>{
   const options = {
     method: 'POST',
@@ -104,6 +103,7 @@ export const updateUser = createAsyncThunk("user/update",async(data:any)=>{
   return user;
   
 })
+
 const userSlice = createSlice({
     name : "user",
     initialState ,
