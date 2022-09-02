@@ -20,6 +20,7 @@ import Appointments from './Components/Component/Profile/Appointments/Appointmen
 import AllAppoinments from './Components/Component/AllAppoinments/AllAppoinments';
 import AllUsers from './Components/Component/AllUsers/AllUsers';
 import MakeAdmin from './Components/Component/MakeAdmin/MakeAdmin';
+import PageNotFound from './Components/Pages/PageNotFound';
 
 function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -48,6 +49,7 @@ function App() {
             <Route path='make-admin' element={<RequireAuth><MakeAdmin/></RequireAuth>}/>
             <Route path='*' element={<Profile />}/>
           </Route>
+          <Route path='*' element={<PageNotFound/>}/>
       </Routes>
       <Footer/>   
     </div>

@@ -30,7 +30,7 @@ const NavBar = () => {
            <nav >
             <div className='flex items-center justify-between px-2 mx-auto bg-white md:container'>
                 <div>
-                    <NavHashLink to="/" smooth className='text-lg font-bold'>Doctor Portal</NavHashLink>
+                    <NavHashLink to="/" smooth className='text-lg font-bold'>Doctor <span className="px-2 py-1 font-semibold text-white bg-gray-700 rounded-md">Portal</span></NavHashLink>
                 </div>
                 <div>
                     {/* MD display */}
@@ -58,7 +58,7 @@ const NavBar = () => {
 
                 </div>
                     {/* SM Display */}
-                   <FaBars className="m-2 text-2xl md:hidden" onClick={hendleMobileMane}/>
+                   <FaBars className="m-2 mt-4 mb-4 text-2xl md:hidden" onClick={hendleMobileMane}/>
             </div>
             <ul className={`absolute ${mobileManu ? "": "hidden"} w-full px-4 py-4 bg-slate-200`}>
                 <NavHashLink to="/#home"><li className="px-2 py-2 hover:bg-slate-300">Home</li></NavHashLink>
@@ -73,7 +73,7 @@ const NavBar = () => {
                     {isAdmin && <>
                         <NavLink to={allAppointmentsLink}><li className="px-2 py-2 hover:bg-slate-300">All Appointment</li></NavLink>
                         <NavLink to={allUsersPageLink}><li className="px-2 py-2 hover:bg-slate-300">All User</li></NavLink>
-                        <NavLink to={makeAdminPageLink}><li className="px-2 py-2 hover:bg-slate-300">Make Admin</li></NavLink>
+                        
                     </>}
                 </>}
             </ul>

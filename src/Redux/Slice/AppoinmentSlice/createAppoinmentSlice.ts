@@ -60,9 +60,31 @@ const createAppoinmentSlice = createSlice({
            state.date = action.payload.date;
            state.time = action.payload.time;
            state.serviceName = action.payload.serviceName;
-           state.isLoding = false;
-           state.message = action.payload.message;
            state.userId = action.payload.userId;
+           state.message = action.payload.message;
+           state.isLoding = false;
+        })
+        builder.addCase(makeAppointment.pending, (state, action) => {
+           state.name = "";
+           state.email = "";
+           state.phone = null;
+           state.date = "";
+           state.time = "";
+           state.serviceName = "";
+           state.userId = "";
+           state.message = "";
+           state.isLoding = true;
+        })
+        builder.addCase(makeAppointment.rejected, (state, action) => {
+           state.name = "";
+           state.email = "";
+           state.phone = null;
+           state.date = "";
+           state.time = "";
+           state.serviceName = "";
+           state.userId = "";
+           state.message = "Appointment booking failed, please try again !!";
+           state.isLoding = true;
         })
     }
 })

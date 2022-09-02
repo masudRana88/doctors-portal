@@ -14,7 +14,6 @@ export default function ProfilePage() {
             admin && <>
               <NavLink to="all-appoinments" className="inline-block w-full px-2 py-2 mt-2 font-medium leading-tight text-center text-white duration-75 rounded-md bg-gradient-to-bl from-bgGreenR to-bgGreenL active:scale-95">All Appointment</NavLink>
               <NavLink to="all-users" className="inline-block w-full px-2 py-2 mt-2 font-medium leading-tight text-center text-white duration-75 rounded-md bg-gradient-to-bl from-bgGreenR to-bgGreenL active:scale-95">All user</NavLink>
-              <NavLink to="make-admin" className="inline-block w-full px-2 py-2 mt-2 font-medium leading-tight text-center text-white duration-75 rounded-md bg-gradient-to-bl from-bgGreenR to-bgGreenL active:scale-95">make admin</NavLink>
             </>
           }
         </div>

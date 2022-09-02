@@ -5,6 +5,7 @@ import { getAllAppointments, updateAppointMentStatus } from '../../../Redux/Slic
 import { AppDispatch, RootState } from '../../../Redux/store'
 import { MdDeleteForever } from "react-icons/md";
 import Aleart from '../Aleart'
+import Loder from '../Loder'
 
 export default function AllAppoinments() {
     type itemType = {
@@ -24,6 +25,7 @@ export default function AllAppoinments() {
     const dispatch = useDispatch<AppDispatch>()
     // const adminId = useSelector((state:RootState)=> state.user.id)
     const appointments = useSelector((state:RootState)=> state.allAppointments.appointments)
+    const isLoding = useSelector((state:RootState)=> state.allAppointments.isLoding)
     const handleDelete =(id:string)=>{
         setItemId(id)
         setShow(true)
@@ -40,9 +42,10 @@ export default function AllAppoinments() {
     <div className='w-full h-full p-5 mx-auto'>
         <div className='w-full p-5 rounded-md shadow bg-slate-100'>
             <h4 className='mt-8 mb-10 text-2xl font-normal text-center'>All appoinments :</h4>
-            {appointments.length === 0 && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">Emty</div>}
+            {isLoding && <Loder size={35}/>}
+            {!isLoding && appointments.length === 0 && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">Emty</div>}
             {/* table start */}
-            {appointments.length !== 0 &&<div className="flex flex-col">
+            {!isLoding && appointments.length !== 0 &&<div className="flex flex-col">
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                     <div className="overflow-hidden">

@@ -1,6 +1,5 @@
 import axios from "axios"
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { array } from "prop-types";
 
 
 type initialStateType ={
@@ -70,34 +69,40 @@ const allAppointmentSlice= createSlice({
         })
         builder.addCase(getAllAppointments.rejected, (state, action) => {
             state.appointments = [];
+            state.message = "Can not Find All Appointments, please try again later.";
             state.isLoding = false;
         })
         builder.addCase(getAllAppointments.pending, (state, action) => {
             state.appointments = [];
+            state.message = "";
             state.isLoding = true
         })
         // gelete appoinment
         builder.addCase(deleteAppointments.fulfilled, (state, action) => {
             state.appointments = state.appointments.filter((appoint:any) => appoint._id !== action.payload)
-            state.message = "Appointment Cancle successfully "
+            state.message = "Appointment Cancle successfully ";
+            state.isLoding = false;
         })
         builder.addCase(deleteAppointments.rejected, (state, action) => {
             state.message = "Appointment Cancle Failed!! "
+            state.isLoding = false;
         })
         builder.addCase(deleteAppointments.pending, (state, action) => {
-            
+            state.message = ""
+            state.isLoding = true;
         })
         // update appoinment state
         builder.addCase(updateAppointMentStatus.fulfilled, (state, action) => {
             state.message = "Appointment update successfully ";
-            
-
+            state.appointments = state.appointments.map((appoint:any) => appoint._id === action.payload.id? {...appoint, status: action.payload.status}: appoint)
+            state.isLoding = false;
         })
         builder.addCase(updateAppointMentStatus.rejected, (state, action) => {
-            state.message = "Appointment update successfully "
+            state.message = "Appointment can not updated, Please try again !!"
+            state.isLoding = false;
         })
         builder.addCase(updateAppointMentStatus.pending, (state, action) => {
-            
+            state.isLoding = true;
         })
     },
 

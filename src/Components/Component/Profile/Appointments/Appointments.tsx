@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from '../../../../Redux/store'
 import { MdOutlineClose } from "react-icons/md";
 import Message from '../../Message'
 import Aleart from '../../Aleart'
+import Loder from '../../Loder'
 export default function Appointments() {
 
   // type
@@ -27,8 +28,10 @@ export default function Appointments() {
     const userId = useSelector((state:RootState)=> state.user.id)
     const appointments = useSelector((state:RootState)=> state.userAppoinment.appointments)
     const msg = useSelector((state:RootState)=> state.userAppoinment.message)
+    const isLoding = useSelector((state:RootState)=> state.userAppoinment.isLoading)
     useEffect(() => {
-        dispatch(getUserAppointments(userId))
+      dispatch(getUserAppointments(userId))
+      dispatch(clearAppointmentMsg())
     },[userId])
     if(msg){
       setTimeout(() => {
@@ -45,8 +48,9 @@ export default function Appointments() {
     <div className='w-full h-full mx-auto'>
         <div className='p-5 pt-8 pb-8 mx-5 mt-5 rounded-md shadow md:w-5/6 bg-slate-100'>
             <h3 className='mb-3 text-xl'>My Appoinments :</h3>
-            {msg && <Message>{msg}</Message>}
-            {appointments.length === 0 && <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">Emty</div>}
+            {isLoding && <Loder size={35}/>}
+            { msg && <Message>{msg}</Message>}
+            {!isLoding && appointments.length === 0  &&  <div className="px-6 py-5 mb-3 text-base text-blue-700 bg-blue-100 rounded-lg" role="alert">Emty</div>}
             {appointments.map((appointment:appointmentType)=>
               <div className="flex items-center justify-between px-6 py-5 mb-4 text-base text-indigo-400 bg-indigo-100 rounded-lg" >
                 <div>

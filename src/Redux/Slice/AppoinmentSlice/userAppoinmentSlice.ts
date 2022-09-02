@@ -65,13 +65,15 @@ const userAppoinmentSlice = createSlice({
         // ================== get user Appoinment =====================
         builder.addCase(deleteUserAppointments.fulfilled, (state, action) => {
             state.appointments = state.appointments.filter((appoint:any) => appoint._id !== action.payload)
-            state.message = "Appointment Cancle successfully "
+            state.message = "Appointment Cancle successfully ";
+            state.isLoading = false;
         })
         builder.addCase(deleteUserAppointments.rejected, (state, action) => {
-           
+            state.message = "Delete failed, please try again."
+            state.isLoading = false;
         })
         builder.addCase(deleteUserAppointments.pending, (state, action) => {
-            
+            state.isLoading = true;
         })
     }    
 })
