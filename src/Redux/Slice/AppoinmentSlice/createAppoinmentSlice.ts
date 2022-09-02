@@ -31,7 +31,7 @@ export const makeAppointment = createAsyncThunk("createAppoinment/make", async(d
 
 const options = {
   method: 'POST',
-  url: 'http://localhost:5000/appointment/create',
+  url: 'https://secure-fortress-70724.herokuapp.com/appointment/create',
   data: {
     email: data.email,
     name: data.name,

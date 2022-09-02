@@ -20,7 +20,7 @@ export const getAllAppointments = createAsyncThunk("allAppointments/get",async()
     token = token && JSON.parse(token);
     const options= {
     method: 'GET',
-    url: 'http://localhost:5000/appointment/get/all/',
+    url: 'https://secure-fortress-70724.herokuapp.com/appointment/get/all/',
     headers: {
         token: token ? token : ""
     }
@@ -33,7 +33,7 @@ export const getAllAppointments = createAsyncThunk("allAppointments/get",async()
 export const deleteAppointments = createAsyncThunk("allAppointmentSlice/delete",async(id:string) =>{
     const options = {
     method: 'DELETE',
-    url: `http://localhost:5000/appointment/delete/${id}`
+    url: `https://secure-fortress-70724.herokuapp.com/appointment/delete/${id}`
     };
 
    const deleteUserAppointments = await axios.request(options)
@@ -48,7 +48,7 @@ export const updateAppointMentStatus = createAsyncThunk("allAppointmentSlices/up
     token = token && JSON.parse(token);
     const options = {
     method: 'PUT',
-    url: `http://localhost:5000/appointment/update/status/${data.id}`,
+    url: `https://secure-fortress-70724.herokuapp.com/appointment/update/status/${data.id}`,
     headers: {
         token: token ? token : ""
     },

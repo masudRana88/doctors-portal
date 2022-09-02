@@ -51,7 +51,7 @@ const initialState: initialStateUser ={
 export const singUpUser = createAsyncThunk("user/sungUp",async(userData:bodyData)=>{
     const options = {
     method: 'POST',
-    url: 'http://localhost:5000/user/singup',
+    url: 'https://secure-fortress-70724.herokuapp.com/user/singup',
     data: {email: userData.email, password: userData.password, name: userData.name}
     };
 
@@ -63,7 +63,7 @@ export const singUpUser = createAsyncThunk("user/sungUp",async(userData:bodyData
 })
 // Login user with email and password
 export const loginUser = createAsyncThunk("user/login",async(data:any)=>{
-    const user = await axios.post("http://localhost:5000/user/login/",data )
+    const user = await axios.post("https://secure-fortress-70724.herokuapp.com/user/login/",data )
     localStorage.setItem("email", JSON.stringify(user.data.email))
     localStorage.setItem("user", JSON.stringify(user.data.jwt))
     return user
@@ -76,7 +76,7 @@ export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
   token = token && JSON.parse(token);
   const options = {
     method: 'GET',
-    url: 'http://localhost:5000/user/login/token',
+    url: 'https://secure-fortress-70724.herokuapp.com/user/login/token',
     headers: {
       token: token ? token : ""
     }
@@ -89,7 +89,7 @@ export const getUserInfo = createAsyncThunk("user/getUserInfo",async()=>{
 export const updateUser = createAsyncThunk("user/update",async(data:any)=>{
   const options = {
     method: 'POST',
-    url: 'http://localhost:5000/user/update',
+    url: 'https://secure-fortress-70724.herokuapp.com/user/update',
     data: {
       email: data.email,
       name: data.name,

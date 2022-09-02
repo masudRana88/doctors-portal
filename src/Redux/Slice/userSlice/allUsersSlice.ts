@@ -22,7 +22,7 @@ export const getAllUsers = createAsyncThunk("user/getAllUsers",async()=>{
   
     const options = {
       method: 'GET',
-      url: 'http://localhost:5000/user/get/all',
+      url: 'https://secure-fortress-70724.herokuapp.com/user/get/all',
       headers: {
         token: token ? token : ""
       }
@@ -37,7 +37,7 @@ export const deleteUsers = createAsyncThunk("user/deleteUsers",async(id:string)=
     token = token && JSON.parse(token);
   const options = {
     method: 'DELETE',
-    url: `http://localhost:5000/user/delete/${id}`,
+    url: `https://secure-fortress-70724.herokuapp.com/user/delete/${id}`,
     headers: {
       token: token ? token : ""
     }
@@ -54,7 +54,7 @@ export const updateUsersType = createAsyncThunk("user/updateUsersType",async(dat
     token = token && JSON.parse(token);
     const options = {
       method: 'POST',
-      url: 'http://localhost:5000/user/update/type',
+      url: 'https://secure-fortress-70724.herokuapp.com/user/update/type',
       headers: {
         token: token ? token : ""
       },

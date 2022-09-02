@@ -17,7 +17,7 @@ const initialState:initialStateType ={
 export const getUserAppointments = createAsyncThunk("userAppoinment/get",async(id:string) =>{
     const options = {
     method: 'GET',
-    url: `http://localhost:5000/appointment/${id}`
+    url: `https://secure-fortress-70724.herokuapp.com/appointment/${id}`
     };
 
    const response = await axios.request(options)
@@ -27,7 +27,7 @@ export const getUserAppointments = createAsyncThunk("userAppoinment/get",async(i
 export const deleteUserAppointments = createAsyncThunk("userAppoinment/delete",async(id:string) =>{
     const options = {
     method: 'DELETE',
-    url: `http://localhost:5000/appointment/delete/${id}`
+    url: `https://secure-fortress-70724.herokuapp.com/appointment/delete/${id}`
     };
 
    const deleteUserAppointments = await axios.request(options)
